@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,12 +18,12 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     private ArrayList<ExampleItem> mExampleList;
     private Context context;
 
-    public static class ExampleViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImageView;
-        public TextView mTextView1;
-        public TextView mTextView2;
+     static class ExampleViewHolder extends RecyclerView.ViewHolder {
+         ImageView mImageView;
+         TextView mTextView1;
+         TextView mTextView2;
 
-        public ExampleViewHolder(View itemView) {
+         ExampleViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.imageView);
             mTextView1 = itemView.findViewById(R.id.textView);
@@ -32,7 +34,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     public ExampleAdapter(ArrayList<ExampleItem> exampleList, Context context) {
         mExampleList = exampleList;
         this.context = context;
-      }
+    }
 
     @Override
     public ExampleViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
@@ -42,17 +44,32 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*try {
-                    Thread.sleep(590);
+
+                try {
+                    setAnimation(parent);
+                    Thread.sleep(400);
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }*/
-                Intent intent = new Intent(context, DetailedActivity.class);
-                context.startActivity(intent);
+                } finally {
+                   Intent intent = new Intent(context, DetailedActivity.class);
+                    context.startActivity(intent);
+
+                }
+
             }
         });
 
         return new ExampleViewHolder(v);
+    }
+
+    private void setAnimation(View viewToAnimate) {
+        // If the bound view wasn't previously displayed on screen, it's animated
+
+        Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_out);
+        viewToAnimate.startAnimation(animation);
+
+
     }
 
 

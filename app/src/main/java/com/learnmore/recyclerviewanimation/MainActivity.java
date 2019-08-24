@@ -63,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.scheduleLayoutAnimation();
     }
 
-    void runLayoutAnimationFromBottom(RecyclerView recyclerView) {
+   /* void runLayoutAnimationFromBottom(RecyclerView recyclerView) {
         Context context = recyclerView.getContext();
         LayoutAnimationController layoutAnimationController = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_from_bottom);
         recyclerView.setLayoutAnimation(layoutAnimationController);
         recyclerView.getAdapter().notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
-    }
+    }*/
 
 
 }
