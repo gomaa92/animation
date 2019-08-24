@@ -1,5 +1,6 @@
 package com.learnmore.recyclerviewanimation;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.willowtreeapps.spruce.Spruce;
+import com.willowtreeapps.spruce.animation.DefaultAnimations;
+import com.willowtreeapps.spruce.sort.DefaultSort;
 
 import java.util.ArrayList;
 
@@ -46,8 +51,14 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             public void onClick(View view) {
 
                 try {
-                    setAnimation(parent);
-                    Thread.sleep(400);
+
+                    Animator spruceAnimator = new Spruce
+                            .SpruceBuilder(parent)
+                            .sortWith(new DefaultSort(/*interObjectDelay=*/50L))
+                            .animateWith(new Animator[] {DefaultAnimations.shrinkAnimator(parent, /*duration=*/800)})
+                            .start();
+
+                    Thread.sleep(800);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
