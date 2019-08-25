@@ -1,8 +1,9 @@
 package com.learnmore.recyclerviewanimation;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +13,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.willowtreeapps.spruce.Spruce;
-import com.willowtreeapps.spruce.animation.DefaultAnimations;
-import com.willowtreeapps.spruce.sort.DefaultSort;
-
 import java.util.ArrayList;
 
 
@@ -23,17 +20,19 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     private ArrayList<ExampleItem> mExampleList;
     private Context context;
 
-     static class ExampleViewHolder extends RecyclerView.ViewHolder {
-         ImageView mImageView;
-         TextView mTextView1;
-         TextView mTextView2;
+    static class ExampleViewHolder extends RecyclerView.ViewHolder {
+        ImageView mImageView;
+        TextView mTextView1;
+        TextView mTextView2;
 
-         ExampleViewHolder(View itemView) {
+        ExampleViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.imageView);
             mTextView1 = itemView.findViewById(R.id.textView);
             mTextView2 = itemView.findViewById(R.id.textView2);
         }
+
+
     }
 
     public ExampleAdapter(ArrayList<ExampleItem> exampleList, Context context) {
@@ -49,25 +48,14 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                try {
-
-                    Animator spruceAnimator = new Spruce
-                            .SpruceBuilder(parent)
-                            .sortWith(new DefaultSort(/*interObjectDelay=*/50L))
-                            .animateWith(new Animator[] {DefaultAnimations.shrinkAnimator(parent, /*duration=*/800)})
-                            .start();
-
-                    Thread.sleep(800);
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                   Intent intent = new Intent(context, DetailedActivity.class);
-                    context.startActivity(intent);
-
-                }
-
+                setAnimation(parent);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(context, DetailedActivity.class);
+                        context.startActivity(intent);
+                    }
+                }, 0);
             }
         });
 
@@ -77,7 +65,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     private void setAnimation(View viewToAnimate) {
         // If the bound view wasn't previously displayed on screen, it's animated
 
-        Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_out);
+        Animation animation = AnimationUtils.loadAnimation(context, R.anim.item_animation_from_bottom);
         viewToAnimate.startAnimation(animation);
 
 
@@ -91,10 +79,25 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         holder.mImageView.setImageResource(currentItem.getImageResource());
         holder.mTextView1.setText(currentItem.getText1());
         holder.mTextView2.setText(currentItem.getText2());
+
+        if (position == 0) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#567845"));
+        }
+        if (position == 1) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#39FF33"));
+        }
+        if (position == 2) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#4633FF"));
+        }
+        if (position == 3) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#AF33FF"));
+        }
     }
 
     @Override
     public int getItemCount() {
         return mExampleList.size();
     }
+
+
 }
