@@ -17,7 +17,7 @@ public class DetailedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed);
 
-        Toolbar toolbar = findViewById(R.id.toolbarDetailed);
+        Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
         imageView = findViewById(R.id.toolbarImage);

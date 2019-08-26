@@ -7,7 +7,7 @@
     tools:context=".DetailedActivity">
 
     <include
-        android:id="@+id/toolbarDetailed"
+        android:id="@+id/toolBar"
         layout="@layout/toolbar" />
 
     <TextView
