@@ -20,16 +20,39 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     private ArrayList<ExampleItem> mExampleList;
     private Context context;
 
+    OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
     static class ExampleViewHolder extends RecyclerView.ViewHolder {
         ImageView mImageView;
         TextView mTextView1;
         TextView mTextView2;
 
-        ExampleViewHolder(View itemView) {
+        ExampleViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.imageView);
             mTextView1 = itemView.findViewById(R.id.textView);
             mTextView2 = itemView.findViewById(R.id.textView2);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+
+                }
+            });
+
         }
 
 
@@ -59,7 +82,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             }
         });
 
-        return new ExampleViewHolder(v);
+        return new ExampleViewHolder(v, mListener);
     }
 
     private void setAnimation(View viewToAnimate) {

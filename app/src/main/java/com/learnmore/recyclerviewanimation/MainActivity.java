@@ -1,6 +1,7 @@
 package com.learnmore.recyclerviewanimation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private ExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         exampleList.add(new ExampleItem(R.drawable.ic_audio, "Line 3", "Line 4"));
         exampleList.add(new ExampleItem(R.drawable.ic_sun, "Line 5", "Line 6"));
         exampleList.add(new ExampleItem(R.drawable.ic_android, "Line 7", "Line 8"));
-
 
 
         mRecyclerView = findViewById(R.id.recyclerView);
@@ -43,10 +43,31 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
+            Intent intent = new Intent(MainActivity.this, DetailedActivity.class);
+
+            @Override
+            public void onItemClick(int position) {
+                if (position == 0) {
+                    intent.putExtra("position", "0");
+                    startActivity(intent);
+                } else if (position == 1) {
+                    intent.putExtra("position", "1");
+                    startActivity(intent);
+                } else if (position == 2) {
+                    intent.putExtra("position", "2");
+                    startActivity(intent);
+                } else if (position == 3) {
+                    intent.putExtra("position", "3");
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
 
 
-    public RecyclerView getmRecyclerView(){
+    public RecyclerView getmRecyclerView() {
         return this.mRecyclerView;
     }
 

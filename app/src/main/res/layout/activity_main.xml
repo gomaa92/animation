@@ -5,10 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <include
+        android:id="@+id/toolbarIntro"
+        layout="@layout/toolbardefault" />
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbarIntro"
         android:background="@android:color/darker_gray"
         android:padding="4dp"
         android:scrollbars="vertical" />
