@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             startActivity(intent);
                         }
-                    }, 600);
+                    }, 150);
+
                     //startActivity(intent);
                 } else if (position == 1) {
                     intent.putExtra("position", "1");
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     }, 600);
+
                 } else if (position == 2) {
                     intent.putExtra("position", "2");
                     runLayoutAnimationFromBottom(mRecyclerView);
@@ -74,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             startActivity(intent);
                         }
-                    }, 500);
+                    }, 600);
+
                 } else if (position == 3) {
                     intent.putExtra("position", "3");
                     runLayoutAnimationFromBottom(mRecyclerView);
