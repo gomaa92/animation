@@ -68,7 +68,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         final View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent, false);
 
 
-        v.setOnClickListener(new View.OnClickListener() {
+     /*   v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setAnimation(parent);
@@ -78,9 +78,9 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
                         Intent intent = new Intent(context, DetailedActivity.class);
                         context.startActivity(intent);
                     }
-                }, 0);
+                }, 600);
             }
-        });
+        });*/
 
         return new ExampleViewHolder(v, mListener);
     }

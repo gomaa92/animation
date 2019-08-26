@@ -3,11 +3,10 @@ package com.learnmore.recyclerviewanimation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
@@ -50,16 +49,41 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 if (position == 0) {
                     intent.putExtra("position", "0");
-                    startActivity(intent);
+                    runLayoutAnimationFromBottom(mRecyclerView);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(intent);
+                        }
+                    }, 600);
+                    //startActivity(intent);
                 } else if (position == 1) {
                     intent.putExtra("position", "1");
-                    startActivity(intent);
+                    runLayoutAnimationFromBottom(mRecyclerView);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(intent);
+                        }
+                    }, 600);
                 } else if (position == 2) {
                     intent.putExtra("position", "2");
-                    startActivity(intent);
+                    runLayoutAnimationFromBottom(mRecyclerView);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(intent);
+                        }
+                    }, 500);
                 } else if (position == 3) {
                     intent.putExtra("position", "3");
-                    startActivity(intent);
+                    runLayoutAnimationFromBottom(mRecyclerView);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(intent);
+                        }
+                    }, 600);
                 }
             }
         });
@@ -80,13 +104,13 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.scheduleLayoutAnimation();
     }
 
-   /* void runLayoutAnimationFromBottom(RecyclerView recyclerView) {
+    void runLayoutAnimationFromBottom(RecyclerView recyclerView) {
         Context context = recyclerView.getContext();
         LayoutAnimationController layoutAnimationController = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_from_bottom);
         recyclerView.setLayoutAnimation(layoutAnimationController);
         recyclerView.getAdapter().notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
-    }*/
+    }
 
 
 }
