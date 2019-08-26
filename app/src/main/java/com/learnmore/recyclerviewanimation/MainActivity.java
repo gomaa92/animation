@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             startActivity(intent);
                         }
-                    }, 150);
+                    }, 1000);
 
                     //startActivity(intent);
                 } else if (position == 1) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             startActivity(intent);
                         }
-                    }, 150);
+                    }, 1000);
 
                 } else if (position == 2) {
                     intent.putExtra("position", "2");
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             startActivity(intent);
                         }
-                    }, 150);
+                    }, 1000);
 
                 } else if (position == 3) {
                     intent.putExtra("position", "3");
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             startActivity(intent);
                         }
-                    }, 150);
+                    }, 1000);
                 }
             }
         });
