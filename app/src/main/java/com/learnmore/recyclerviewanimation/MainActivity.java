@@ -115,5 +115,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.scheduleLayoutAnimation();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        /*Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+        intent.putExtra("finish" , "true");
+        startActivity(intent);*/
+    }
 }
